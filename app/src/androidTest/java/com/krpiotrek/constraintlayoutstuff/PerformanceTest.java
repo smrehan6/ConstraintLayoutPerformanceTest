@@ -1,24 +1,30 @@
 package com.krpiotrek.constraintlayoutstuff;
 
 import android.content.Context;
-import android.test.InstrumentationTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PerformanceTest extends InstrumentationTestCase {
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-    @SmallTest
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+
+@RunWith(AndroidJUnit4.class)
+public class PerformanceTest {
+
+    @Test
     public void test() {
-        final long constraintLayoutTime = getLayoutTime(R.layout.item_new);
         final long linearLayoutTime = getLayoutTime(R.layout.item_old_linear);
         final long relativeLayoutTime = getLayoutTime(R.layout.item_old_relative);
+        final long constraintLayoutTime = getLayoutTime(R.layout.item_new);
 
-        Log.i("time", "constraint : " + constraintLayoutTime);
-        Log.i("time", "linear : " + linearLayoutTime);
-        Log.i("time", "relative : " + relativeLayoutTime);
+        Log.i("time", "Linear : " + linearLayoutTime);
+        Log.i("time", "Relative : " + relativeLayoutTime);
+        Log.i("time", "Constraint : " + constraintLayoutTime);
     }
 
     private long getLayoutTime(int layoutRes) {
